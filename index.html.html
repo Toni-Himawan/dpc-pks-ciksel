@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DPC PKS Cikarang Selatan | Website Interaktif</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{--orange:#F26522;--orange-light:#FFF3EC;--black:#000;--white:#fff}
+  body{font-family:'Poppins',sans-serif;color:var(--black);background:var(--white);overflow-x:hidden}
+  html{scroll-behavior:smooth}
+
+  /* ANNOUNCEMENT */
+  .ann-banner{background:var(--black);color:var(--white);display:flex;align-items:center;justify-content:center;gap:1rem;padding:10px 2rem;position:relative;flex-wrap:wrap}
+  .ann-badge{background:var(--orange);color:var(--white);font-size:10px;font-weight:700;letter-spacing:.1em;padding:3px 10px;border-radius:2px;text-transform:uppercase;white-space:nowrap}
+  .ann-text{font-size:13px;color:rgba(255,255,255,.85)}
+  .ann-text a{color:var(--orange);font-weight:600;text-decoration:none}
+  .ann-close{position:absolute;right:1rem;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(255,255,255,.5);font-size:18px;cursor:pointer}
+
+  /* NAVBAR */
+  nav{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:2px solid var(--orange);display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:68px;box-shadow:0 2px 16px rgba(242,101,34,.08)}
+  .nav-brand{display:flex;align-items:center;gap:12px}
+  .nav-logo{width:44px;height:44px;border-radius:50%;object-fit:cover}
+  .nav-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;line-height:1.2}
+  .nav-title span{display:block;font-size:11px;font-family:'Poppins',sans-serif;font-weight:400;color:#888;letter-spacing:.05em}
+  .nav-links{display:flex;gap:2rem;list-style:none}
+  .nav-links a{font-size:13px;font-weight:500;color:var(--black);text-decoration:none;transition:color .2s;cursor:pointer}
+  .nav-links a:hover{color:var(--orange)}
+  .nav-cta{background:var(--orange);color:var(--white);border:none;padding:8px 20px;border-radius:4px;font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:0.2s}
+  .nav-cta:hover{background:#d9541a;transform:scale(1.02)}
+
+  /* HERO */
+  .hero{position:relative;overflow:hidden;min-height:580px;display:flex;align-items:stretch}
+  .hero-photo-side{position:absolute;right:0;top:0;width:52%;height:100%;overflow:hidden}
+  .hero-photo-side img{width:100%;height:100%;object-fit:cover;display:block}
+  .hero-photo-overlay{position:absolute;inset:0;background:linear-gradient(to right,var(--orange) 30%,rgba(242,101,34,.3) 70%,transparent 100%)}
+  .photo-ph{background:#ddd;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:#999}
+  .hero-bg-solid{position:absolute;inset:0;background:var(--orange);z-index:0}
+  .hero-geom{position:absolute;inset:0;pointer-events:none;z-index:1}
+  .hero-content{position:relative;z-index:3;max-width:540px;padding:4.5rem 2.5rem 4.5rem 3rem;display:flex;flex-direction:column;justify-content:center}
+  .hero-eyebrow{display:inline-block;background:rgba(255,255,255,.18);color:var(--white);font-size:11px;font-weight:600;letter-spacing:.12em;padding:5px 14px;border-radius:2px;margin-bottom:1.2rem;text-transform:uppercase}
+  .hero h1{font-family:'Playfair Display',serif;font-size:44px;font-weight:900;color:var(--white);line-height:1.12;margin-bottom:1.2rem}
+  .hero h1 em{font-style:italic}
+  .hero p{font-size:15px;color:rgba(255,255,255,.88);line-height:1.75;max-width:420px;margin-bottom:1.6rem}
+  .countdown-label{font-size:11px;color:rgba(255,255,255,.7);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.6rem}
+  .countdown{display:flex;gap:10px;margin-bottom:2rem}
+  .cd-block{background:rgba(0,0,0,.25);border-radius:6px;padding:10px 16px;text-align:center;min-width:64px}
+  .cd-num{font-family:'Playfair Display',serif;font-size:26px;font-weight:900;color:var(--white);line-height:1}
+  .cd-unit{font-size:10px;color:rgba(255,255,255,.65);letter-spacing:.08em;text-transform:uppercase;margin-top:3px}
+  .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+  .btn-primary{background:var(--white);color:var(--orange);border:none;padding:13px 30px;border-radius:4px;font-family:'Poppins',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:0.2s}
+  .btn-primary:hover{background:#f0f0f0;transform:translateY(-2px)}
+  .btn-outline{background:transparent;color:var(--white);border:2px solid rgba(255,255,255,.7);padding:13px 30px;border-radius:4px;font-family:'Poppins',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:0.2s}
+  .btn-outline:hover{background:rgba(255,255,255,0.1);border-color:white;}
+
+  /* STATS */
+  .stats-bar{background:var(--black);display:flex;justify-content:space-around;padding:1.5rem 2.5rem;flex-wrap:wrap;gap:1rem}
+  .stat-item{text-align:center}
+  .stat-num{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--orange)}
+  .stat-label{font-size:11px;color:rgba(255,255,255,.65);letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+
+  /* SECTION */
+  section{padding:5rem 2.5rem}
+  .section-alt{background:var(--orange-light)}
+  .section-eyebrow{font-size:11px;font-weight:600;letter-spacing:.14em;color:var(--orange);text-transform:uppercase;margin-bottom:.6rem}
+  .section-title{font-family:'Playfair Display',serif;font-size:34px;font-weight:700;line-height:1.2;margin-bottom:1rem}
+  .section-sub{font-size:15px;color:#555;max-width:540px;line-height:1.7}
+
+  /* VISI MISI */
+  .vm-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:3rem}
+  .vm-card{background:var(--white);border-left:4px solid var(--orange);padding:2rem;border-radius:0 8px 8px 0}
+  .vm-card h3{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;margin-bottom:.8rem}
+
+  /* PROGRAM */
+  .program-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+  .program-card{background:var(--white);border:1px solid rgba(242,101,34,.15);border-radius:8px;overflow:hidden;transition:0.2s;cursor:pointer}
+  .program-card:hover{box-shadow:0 8px 24px rgba(242,101,34,.15);transform:translateY(-3px)}
+  .program-photo{height:160px;position:relative;overflow:hidden}
+  .program-photo img{width:100%;height:100%;object-fit:cover;display:block}
+  .program-badge{position:absolute;bottom:10px;left:10px;background:var(--orange);color:var(--white);font-size:10px;font-weight:700;padding:3px 10px;border-radius:2px}
+  .program-body{padding:1.2rem 1.4rem 1.4rem}
+  .program-body h3{font-size:14px;font-weight:600;margin-bottom:.4rem}
+
+  /* EVENT */
+  .event-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:1.5rem;margin-top:3rem}
+  .event-card{border-radius:8px;overflow:hidden;border:1px solid rgba(242,101,34,.15);background:var(--white);cursor:pointer;transition:0.2s}
+  .event-card:hover{transform:translateY(-3px);box-shadow:0 6px 12px rgba(0,0,0,0.05)}
+  .event-header{background:var(--orange);padding:1.2rem 1.5rem;display:flex;align-items:center;gap:12px}
+  .event-date-block{text-align:center;background:rgba(255,255,255,.2);border-radius:6px;padding:6px 14px;min-width:52px}
+  .event-day{font-family:'Playfair Display',serif;font-size:26px;font-weight:900;color:var(--white);line-height:1}
+  .event-month{font-size:11px;color:rgba(255,255,255,.8);text-transform:uppercase}
+  .event-header-info h3{font-size:14px;font-weight:600;color:var(--white)}
+  .event-body{padding:1.2rem 1.5rem}
+  .event-tag{display:inline-block;background:var(--orange-light);color:var(--orange);font-size:11px;font-weight:600;padding:3px 10px;border-radius:2px}
+
+  /* BERITA */
+  .berita-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:1.5rem;margin-top:3rem}
+  .berita-card{background:var(--white);border-radius:8px;overflow:hidden;border:1px solid rgba(0,0,0,.08);cursor:pointer;transition:0.2s}
+  .berita-card:hover{transform:translateY(-4px);box-shadow:0 8px 20px rgba(0,0,0,0.08)}
+  .berita-img-wrap{position:relative;overflow:hidden;height:auto}
+  .berita-img-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:0.3s}
+  .berita-body{padding:1.2rem}
+  .berita-cat{font-size:10px;font-weight:700;color:var(--orange);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.4rem}
+  .berita-card h3{font-size:14px;font-weight:600;line-height:1.5;margin-bottom:.4rem}
+  .berita-date{font-size:11px;color:#aaa;margin-top:.6rem}
+
+  /* TESTIMONI */
+  .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+  .testi-card{background:var(--white);border-radius:8px;padding:1.75rem;border:1px solid rgba(242,101,34,.12)}
+  .testi-stars{color:var(--orange);font-size:13px;margin-bottom:.6rem}
+  .testi-quote{font-size:48px;font-family:'Playfair Display',serif;color:var(--orange);opacity:.25;line-height:.8;margin-bottom:.5rem}
+  .testi-author{display:flex;align-items:center;gap:10px}
+  .testi-avatar-ph{width:44px;height:44px;border-radius:50%;background:var(--orange);display:flex;align-items:center;justify-content:center;font-weight:700;color:white}
+  .testi-name{font-size:13px;font-weight:600}
+
+  /* STRUKTUR */
+  .struktur-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3rem}
+  .struktur-card{text-align:center;cursor:pointer}
+  .struktur-foto-ph{width:100px;height:100px;border-radius:50%;border:3px solid var(--orange);background:var(--orange-light);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 1rem;gap:4px}
+  .struktur-initials{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--orange)}
+
+  /* KONTAK */
+  .kontak-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-top:3rem}
+  .kontak-form{background:var(--white);padding:2rem;border-radius:8px;border:1px solid rgba(242,101,34,.15)}
+  .form-group{margin-bottom:1.2rem}
+  .form-group input,.form-group textarea{width:100%;padding:10px 14px;border:1px solid #ddd;border-radius:4px;font-family:'Poppins',sans-serif;font-size:13px;outline:none}
+  .form-group input:focus,.form-group textarea:focus{border-color:var(--orange)}
+  .btn-submit{width:100%;background:var(--orange);color:var(--white);border:none;padding:12px;border-radius:4px;font-weight:600;cursor:pointer;transition:0.2s}
+  .btn-submit:hover{background:#d9541a}
+
+  /* FOOTER */
+  footer{background:#111;color:rgba(255,255,255,.75);padding:3rem 2.5rem 1.5rem}
+  .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:2rem;margin-bottom:2rem}
+  footer ul{list-style:none}
+  footer ul li a{font-size:13px;color:rgba(255,255,255,.6);text-decoration:none;cursor:pointer}
+  footer ul li a:hover{color:var(--orange)}
+
+  /* WA */
+  .wa-float{position:fixed;bottom:28px;right:28px;z-index:999;display:flex;align-items:center;gap:10px}
+  .wa-tooltip{background:var(--black);color:var(--white);font-size:12px;padding:8px 14px;border-radius:4px;white-space:nowrap;opacity:0;transform:translateX(8px);transition:0.25s;pointer-events:none}
+  .wa-float:hover .wa-tooltip{opacity:1;transform:translateX(0)}
+  .wa-btn{width:54px;height:54px;border-radius:50%;background:#25D366;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center}
+  .wa-btn svg{width:28px;fill:white}
+
+  /* NOTIF TOAST */
+  .toast-msg{position:fixed;bottom:100px;right:30px;background:#333;color:white;padding:10px 20px;border-radius:40px;font-size:13px;z-index:1000;box-shadow:0 4px 12px rgba(0,0,0,0.2);animation:fadeInOut 2s ease;font-weight:500}
+  @keyframes fadeInOut{0%{opacity:0;transform:translateY(20px)}15%{opacity:1;transform:translateY(0)}85%{opacity:1}100%{opacity:0;transform:translateY(20px)}}
+</style>
+</head>
+<body>
+
+<div class="ann-banner" id="annBanner">
+  <span class="ann-badge">Pengumuman</span>
+  <span class="ann-text">📅 <strong>Musyawarah Kader DPC PKS Cikarang Selatan</strong> — 20 Juli 2025 di Aula Kecamatan. <a href="#" id="annDaftarLink">Daftarkan diri Anda →</a></span>
+  <button class="ann-close" id="closeAnnBtn">✕</button>
+</div>
+
+<nav>
+  <div class="nav-brand">
+    <img class="nav-logo" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%23F26522'/%3E%3Ctext x='50' y='67' text-anchor='middle' fill='white' font-size='40' font-family='Arial' font-weight='bold'%3EPKS%3C/text%3E%3C/svg%3E" alt="Logo PKS">
+    <div class="nav-title">DPC PKS Cikarang Selatan<span>Melayani dengan Amanah</span></div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#" data-nav="home">Beranda</a></li>
+    <li><a href="#" data-nav="visi">Visi & Misi</a></li>
+    <li><a href="#" data-nav="program">Program</a></li>
+    <li><a href="#" data-nav="berita">Berita</a></li>
+    <li><a href="#" data-nav="struktur">Struktur</a></li>
+    <li><a href="#" data-nav="kontak">Kontak</a></li>
+  </ul>
+  <button class="nav-cta" id="gabungBtn">Gabung PKS</button>
+</nav>
+
+<section class="hero" id="homeSection">
+  <div class="hero-bg-solid"></div>
+  <div class="hero-photo-side">
+    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%23FFE0B5'/%3E%3Ctext x='400' y='280' text-anchor='middle' fill='%23F26522' font-size='24'%3EKegiatan PKS Ciksel%3C/text%3E%3C/svg%3E" alt="Foto Kegiatan">
+    <div class="hero-photo-overlay"></div>
+  </div>
+  <svg class="hero-geom" viewBox="0 0 900 580" preserveAspectRatio="xMidYMid slice"><g transform="translate(280,290)" opacity="0.07" stroke="white" fill="none"><polygon points="0,-140 99,-99 140,0 99,99 0,140 -99,99 -140,0 -99,-99"/><circle cx="0" cy="0" r="60"/></g></svg>
+  <div class="hero-content">
+    <span class="hero-eyebrow">DPC PKS Cikarang Selatan</span>
+    <h1>Bersama Membangun<br><em>Cikarang</em><br>yang Berkeadilan</h1>
+    <p>Partai Keadilan Sejahtera hadir untuk masyarakat Cikarang Selatan — melayani dengan amanah, bekerja dengan hati.</p>
+    <div class="countdown-label">⏳ Musyawarah Kader — 20 Juli 2025</div>
+    <div class="countdown"><div class="cd-block"><div class="cd-num" id="cd-hari">--</div><div class="cd-unit">Hari</div></div><div class="cd-block"><div class="cd-num" id="cd-jam">--</div><div class="cd-unit">Jam</div></div><div class="cd-block"><div class="cd-num" id="cd-menit">--</div><div class="cd-unit">Menit</div></div><div class="cd-block"><div class="cd-num" id="cd-detik">--</div><div class="cd-unit">Detik</div></div></div>
+    <div class="hero-actions">
+      <button class="btn-primary" id="heroDaftarBtn">Daftar Sekarang →</button>
+      <button class="btn-outline" id="pelajariProgramBtn">Pelajari Program</button>
+    </div>
+  </div>
+</section>
+
+<div class="stats-bar">
+  <div class="stat-item"><div class="stat-num">12+</div><div class="stat-label">Tahun Melayani</div></div>
+  <div class="stat-item"><div class="stat-num">5.000+</div><div class="stat-label">Kader Aktif</div></div>
+  <div class="stat-item"><div class="stat-num">48</div><div class="stat-label">Program Unggulan</div></div>
+  <div class="stat-item"><div class="stat-num">8</div><div class="stat-label">Kelurahan Terjangkau</div></div>
+</div>
+
+<section class="section-alt" id="visiSection">
+  <div class="section-eyebrow">Landasan Gerak</div>
+  <div class="section-title">Visi & Misi DPC PKS Cikarang Selatan</div>
+  <div class="vm-grid">
+    <div class="vm-card"><h3>Visi</h3><p>Menjadi partai dakwah yang kokoh dan terpercaya, mewujudkan masyarakat Cikarang Selatan yang adil, sejahtera, dan bermartabat dalam naungan ridha Allah SWT.</p></div>
+    <div class="vm-card"><h3>Misi</h3><ul><li>Membangun kader yang berakhlak mulia dan profesional</li><li>Memperjuangkan kebijakan pro-rakyat di setiap lini</li><li>Meningkatkan pelayanan sosial dan ekonomi umat</li><li>Memperkuat ukhuwah dan persatuan masyarakat</li></ul></div>
+  </div>
+</section>
+
+<section id="programSection">
+  <div class="section-eyebrow">Apa yang Kami Kerjakan</div>
+  <div class="section-title">Program Unggulan</div>
+  <div class="program-grid" id="programContainer">
+    <!-- card1 -->
+    <div class="program-card" data-prog="Bedah Rumah">
+      <div class="program-photo"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23F26522' viewBox='0 0 24 24'%3E%3Cpath d='M12 3L2 9v13h7v-7h6v7h7V9L12 3z'/%3E%3C/svg%3E" alt="bedah rumah" style="background:#f5e8df;padding:20px;"><span class="program-badge">SOSIAL</span></div>
+      <div class="program-body"><h3>Bedah Rumah Warga</h3><p>Renovasi rumah tidak layak huni bagi warga prasejahtera.</p></div>
+    </div>
+    <div class="program-card" data-prog="Beasiswa"><div class="program-photo"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23F26522' viewBox='0 0 24 24'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z'/%3E%3C/svg%3E" style="background:#f0edf5;padding:20px;"><span class="program-badge">PENDIDIKAN</span></div><div class="program-body"><h3>Beasiswa Pendidikan</h3><p>Bantuan biaya pendidikan pelajar berprestasi.</p></div></div>
+    <div class="program-card" data-prog="Klinik Gratis"><div class="program-photo"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23F26522' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" style="background:#e8f5ee;padding:20px;"><span class="program-badge">KESEHATAN</span></div><div class="program-body"><h3>Klinik Gratis PKS</h3><p>Layanan kesehatan dasar gratis setiap akhir pekan.</p></div></div>
+  </div>
+</section>
+
+<section class="section-alt" id="beritaSection">
+  <div class="section-eyebrow">Terkini dari DPC PKS</div>
+  <div class="section-title">Berita & Kegiatan</div>
+  <div class="berita-grid">
+    <div class="berita-card" data-berita="Musyawarah Kader">
+      <div class="berita-img-wrap"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23F26522' viewBox='0 0 24 24'%3E%3Cpath d='M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z'/%3E%3C/svg%3E" style="height:160px;width:100%;background:#fce8dc;object-fit:cover;"></div>
+      <div class="berita-body"><div class="berita-cat">Utama</div><h3>Musyawarah Kader DPC PKS Cikarang Selatan Hasilkan 12 Resolusi</h3><div class="berita-date">10 Juni 2025</div></div>
+    </div>
+    <div class="berita-card" data-berita="Bedah Rumah"><div class="berita-img-wrap"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23F26522' viewBox='0 0 24 24'%3E%3Cpath d='M12 3L2 9v13h7v-7h6v7h7V9L12 3z'/%3E%3C/svg%3E" style="height:130px;background:#f5e8df;"></div><div class="berita-body"><div class="berita-cat">Program</div><h3>15 Rumah Warga Prasejahtera Tuntas Direnovasi</h3><div class="berita-date">28 Mei 2025</div></div></div>
+    <div class="berita-card" data-berita="Beasiswa"><div class="berita-img-wrap"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23F26522' viewBox='0 0 24 24'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z'/%3E%3C/svg%3E" style="height:130px;background:#f0edf5;"></div><div class="berita-body"><div class="berita-cat">Pendidikan</div><h3>40 Siswa Terima Beasiswa PKS Semester Ganjil</h3><div class="berita-date">15 Mei 2025</div></div></div>
+  </div>
+  <div style="text-align:center;margin-top:2rem;"><button id="lihatSemuaBeritaBtn" style="background:transparent;border:2px solid var(--orange);color:var(--orange);padding:11px 32px;border-radius:4px;font-weight:600;cursor:pointer;">Lihat Semua Berita →</button></div>
+</section>
+
+<section id="strukturSection">
+  <div class="section-eyebrow">Pengurus DPC</div>
+  <div class="section-title">Struktur Kepemimpinan</div>
+  <div class="struktur-grid">
+    <div class="struktur-card" data-pengurus="Ketua DPC H. Khaerul Anam"><div class="struktur-foto-ph"><div class="struktur-initials">KA</div></div><h4>H. Khaerul Anam, S.T.</h4><p>Ketua DPC</p></div>
+    <div class="struktur-card" data-pengurus="Sekretaris Ridwan Fauzi"><div class="struktur-foto-ph"><div class="struktur-initials">RF</div></div><h4>Ridwan Fauzi, S.E.</h4><p>Sekretaris</p></div>
+    <div class="struktur-card" data-pengurus="Bendahara Siti Aminah"><div class="struktur-foto-ph"><div class="struktur-initials">SA</div></div><h4>Siti Aminah, M.Pd.</h4><p>Bendahara</p></div>
+    <div class="struktur-card" data-pengurus="Bidang Dakwah Dedi Haryanto"><div class="struktur-foto-ph"><div class="struktur-initials">DH</div></div><h4>Drs. Dedi Haryanto</h4><p>Ketua Bidang Dakwah</p></div>
+  </div>
+</section>
+
+<section class="section-alt" id="kontakSection">
+  <div class="section-eyebrow">Hubungi Kami</div>
+  <div class="section-title">Sekretariat DPC PKS Cikarang Selatan</div>
+  <div class="kontak-grid">
+    <div class="kontak-info"><h3>Kami siap melayani<br>dan mendengar Anda</h3><div class="kontak-item"><p><strong>Alamat</strong>Jl. Raya Industri No. 12, Cikarang Selatan</p></div><div class="kontak-item"><p><strong>Telepon / WhatsApp</strong>0812-3456-7890</p></div></div>
+    <div class="kontak-form"><h4 style="font-weight:700;margin-bottom:1rem;">Kirim Pesan</h4><div class="form-group"><input type="text" id="namaForm" placeholder="Nama Lengkap"></div><div class="form-group"><input type="text" id="waForm" placeholder="Nomor WhatsApp"></div><div class="form-group"><textarea id="pesanForm" placeholder="Pesan Anda..."></textarea></div><button class="btn-submit" id="submitPesanBtn">Kirim Pesan →</button></div>
+  </div>
+</section>
+
+<footer><div class="footer-grid"><div><div class="footer-brand"><img class="footer-logo" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%23F26522'/%3E%3Ctext x='50' y='67' fill='white' font-size='40'%3EPKS%3C/text%3E%3C/svg%3E"><span class="footer-brand-name">DPC PKS Cikarang Selatan</span></div><p>Melayani dengan amanah, bekerja dengan hati.</p></div><div><h4>Navigasi</h4><ul><li><a href="#" data-nav="home">Beranda</a></li><li><a href="#" data-nav="visi">Visi Misi</a></li><li><a href="#" data-nav="program">Program</a></li><li><a href="#" data-nav="kontak">Kontak</a></li></ul></div><div><h4>Ikuti Kami</h4><ul><li><a href="#" id="igLink">Instagram @pksciksel</a></li><li><a href="#" id="fbLink">Facebook DPC PKS Ciksel</a></li></ul></div></div><div class="footer-bottom">© 2025 DPC PKS Cikarang Selatan.</div></footer>
+
+<div class="wa-float"><div class="wa-tooltip">Chat via WhatsApp</div><button class="wa-btn" id="waFloatBtn"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.856L.054 23.738a.5.5 0 0 0 .612.608l5.988-1.53A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg></button></div>
+
+<script>
+  function showToast(msg){
+    let existing = document.querySelector('.toast-msg'); if(existing) existing.remove();
+    let toast = document.createElement('div'); toast.className='toast-msg'; toast.innerText=msg;
+    document.body.appendChild(toast); setTimeout(()=>toast.remove(),2000);
+  }
+  function scrollToEl(id){ let el=document.getElementById(id); if(el) el.scrollIntoView({behavior:'smooth'});}
+  document.querySelectorAll('[data-nav]').forEach(btn=>{
+    btn.addEventListener('click',(e)=>{e.preventDefault(); let target=btn.getAttribute('data-nav'); scrollToEl(target+'Section');});
+  });
+  document.getElementById('gabungBtn')?.addEventListener('click',()=>{ showToast('📋 Form pendaftaran kader akan segera tersedia. Hubungi kontak kami!'); });
+  document.getElementById('heroDaftarBtn')?.addEventListener('click',()=>{ showToast('✅ Silakan isi formulir pendaftaran Musyawarah Kader via WhatsApp kami.'); window.open('https://wa.me/6281234567890?text=Halo%20saya%20ingin%20daftar%20Musyawarah%20Kader','_blank');});
+  document.getElementById('pelajariProgramBtn')?.addEventListener('click',()=>{ scrollToEl('programSection'); showToast('📌 Scroll ke Program Unggulan'); });
+  document.getElementById('lihatSemuaBeritaBtn')?.addEventListener('click',()=>{ showToast('📰 Seluruh berita dapat diakses melalui kanal resmi kami.'); });
+  document.getElementById('submitPesanBtn')?.addEventListener('click',()=>{ let nama=document.getElementById('namaForm')?.value.trim(); let wa=document.getElementById('waForm')?.value.trim(); let pesan=document.getElementById('pesanForm')?.value.trim(); if(!nama||!wa||!pesan){ showToast('⚠️ Harap isi nama, WA, dan pesan.'); return; } showToast(`Terima kasih ${nama}, pesan Anda akan segera kami balas.`); document.getElementById('namaForm').value=''; document.getElementById('waForm').value=''; document.getElementById('pesanForm').value=''; });
+  document.getElementById('closeAnnBtn')?.addEventListener('click',()=>{ document.getElementById('annBanner').style.display='none'; });
+  document.getElementById('annDaftarLink')?.addEventListener('click',(e)=>{ e.preventDefault(); showToast('📢 Pendaftaran Musyawarah Kader via WA: 0812-3456-7890'); window.open('https://wa.me/6281234567890?text=Min,%20saya%20mendaftar%20Musyawarah%20Kader','_blank'); });
+  document.querySelectorAll('.program-card').forEach(card=>{ card.addEventListener('click',()=>{ let prog=card.getAttribute('data-prog')||card.querySelector('h3')?.innerText; showToast(`✨ Info lebih lanjut mengenai ${prog} hubungi sekretariat DPC.`); }); });
+  document.querySelectorAll('.berita-card').forEach(card=>{ card.addEventListener('click',()=>{ let judul=card.querySelector('h3')?.innerText; showToast(`📖 Baca selengkapnya: ${judul} (situs sedang dalam pengembangan)`); }); });
+  document.querySelectorAll('.event-card').forEach(ev=>{ ev.addEventListener('click',()=>{ let judul=ev.querySelector('h3')?.innerText; showToast(`📅 ${judul} — Hubungi panitia untuk konfirmasi.`); }); });
+  document.querySelectorAll('.struktur-card').forEach(peng=>{ peng.addEventListener('click',()=>{ let nama=peng.querySelector('h4')?.innerText; showToast(`📇 ${nama} — kontak dapat melalui sekretariat DPC.`); }); });
+  document.getElementById('waFloatBtn')?.addEventListener('click',()=>{ window.open('https://wa.me/6281234567890?text=Assalamualaikum,%20saya%20ingin%20bertanya%20mengenai%20DPC%20PKS%20Cikarang%20Selatan','_blank'); });
+  document.getElementById('igLink')?.addEventListener('click',(e)=>{e.preventDefault(); showToast('Instagram: @pksciksel'); window.open('https://instagram.com/pksciksel','_blank');});
+  document.getElementById('fbLink')?.addEventListener('click',(e)=>{e.preventDefault(); showToast('Facebook: DPC PKS Ciksel'); window.open('https://facebook.com/pksciksel','_blank');});
+  function updateCountdown(){ let target=new Date('2025-07-20T08:00:00+07:00'); let diff=target-new Date(); if(diff<=0){ document.getElementById('cd-hari').textContent='00'; document.getElementById('cd-jam').textContent='00'; document.getElementById('cd-menit').textContent='00'; document.getElementById('cd-detik').textContent='00'; return;} let d=Math.floor(diff/(86400000)); let h=Math.floor((diff%86400000)/3600000); let m=Math.floor((diff%3600000)/60000); let s=Math.floor((diff%60000)/1000); document.getElementById('cd-hari').textContent=String(d).padStart(2,'0'); document.getElementById('cd-jam').textContent=String(h).padStart(2,'0'); document.getElementById('cd-menit').textContent=String(m).padStart(2,'0'); document.getElementById('cd-detik').textContent=String(s).padStart(2,'0');}
+  updateCountdown(); setInterval(updateCountdown,1000);
+</script>
+</body>
+</html>
