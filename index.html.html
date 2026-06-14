@@ -181,7 +181,7 @@
   <svg class="hero-geom" viewBox="0 0 900 580" preserveAspectRatio="xMidYMid slice"><g transform="translate(280,290)" opacity="0.07" stroke="white" fill="none"><polygon points="0,-140 99,-99 140,0 99,99 0,140 -99,99 -140,0 -99,-99"/><circle cx="0" cy="0" r="60"/></g></svg>
   <div class="hero-content">
     <span class="hero-eyebrow">DPC PKS Cikarang Selatan</span>
-    <h1>Bersama Membangun<br><em>Cikarang</em><br>yang Berkeadilan</h1>
+    <h1>Bersama Membangun<br><em>Cikarang Selatan</em><br>yang Berkeadilan</h1>
     <p>Partai Keadilan Sejahtera hadir untuk masyarakat Cikarang Selatan — melayani dengan amanah, bekerja dengan hati.</p>
     <div class="countdown-label">⏳ Musyawarah Kader — 20 Juli 2025</div>
     <div class="countdown"><div class="cd-block"><div class="cd-num" id="cd-hari">--</div><div class="cd-unit">Hari</div></div><div class="cd-block"><div class="cd-num" id="cd-jam">--</div><div class="cd-unit">Jam</div></div><div class="cd-block"><div class="cd-num" id="cd-menit">--</div><div class="cd-unit">Menit</div></div><div class="cd-block"><div class="cd-num" id="cd-detik">--</div><div class="cd-unit">Detik</div></div></div>
@@ -240,9 +240,9 @@
   <div class="section-eyebrow">Pengurus DPC</div>
   <div class="section-title">Struktur Kepemimpinan</div>
   <div class="struktur-grid">
-    <div class="struktur-card" data-pengurus="Ketua DPC H. Khaerul Anam"><div class="struktur-foto-ph"><div class="struktur-initials">KA</div></div><h4>H. Khaerul Anam, S.T.</h4><p>Ketua DPC</p></div>
-    <div class="struktur-card" data-pengurus="Sekretaris Ridwan Fauzi"><div class="struktur-foto-ph"><div class="struktur-initials">RF</div></div><h4>Ridwan Fauzi, S.E.</h4><p>Sekretaris</p></div>
-    <div class="struktur-card" data-pengurus="Bendahara Siti Aminah"><div class="struktur-foto-ph"><div class="struktur-initials">SA</div></div><h4>Siti Aminah, M.Pd.</h4><p>Bendahara</p></div>
+    <div class="struktur-card" data-pengurus="Ketua DPC Diar Ardian"><div class="struktur-foto-ph"><div class="struktur-initials">DA</div></div><h4>H. Khaerul Anam, S.T.</h4><p>Ketua DPC</p></div>
+    <div class="struktur-card" data-pengurus="Sekretaris Mustofa"><div class="struktur-foto-ph"><div class="struktur-initials">MS</div></div><h4>Ridwan Fauzi, S.E.</h4><p>Sekretaris</p></div>
+    <div class="struktur-card" data-pengurus="Bendahara Suherman"><div class="struktur-foto-ph"><div class="struktur-initials">SH</div></div><h4>Siti Aminah, M.Pd.</h4><p>Bendahara</p></div>
     <div class="struktur-card" data-pengurus="Bidang Dakwah Dedi Haryanto"><div class="struktur-foto-ph"><div class="struktur-initials">DH</div></div><h4>Drs. Dedi Haryanto</h4><p>Ketua Bidang Dakwah</p></div>
   </div>
 </section>
@@ -276,7 +276,7 @@
   document.getElementById('lihatSemuaBeritaBtn')?.addEventListener('click',()=>{ showToast('📰 Seluruh berita dapat diakses melalui kanal resmi kami.'); });
   document.getElementById('submitPesanBtn')?.addEventListener('click',()=>{ let nama=document.getElementById('namaForm')?.value.trim(); let wa=document.getElementById('waForm')?.value.trim(); let pesan=document.getElementById('pesanForm')?.value.trim(); if(!nama||!wa||!pesan){ showToast('⚠️ Harap isi nama, WA, dan pesan.'); return; } showToast(`Terima kasih ${nama}, pesan Anda akan segera kami balas.`); document.getElementById('namaForm').value=''; document.getElementById('waForm').value=''; document.getElementById('pesanForm').value=''; });
   document.getElementById('closeAnnBtn')?.addEventListener('click',()=>{ document.getElementById('annBanner').style.display='none'; });
-  document.getElementById('annDaftarLink')?.addEventListener('click',(e)=>{ e.preventDefault(); showToast('📢 Pendaftaran Musyawarah Kader via WA: 0812-3456-7890'); window.open('https://wa.me/6281234567890?text=Min,%20saya%20mendaftar%20Musyawarah%20Kader','_blank'); });
+  document.getElementById('annDaftarLink')?.addEventListener('click',(e)=>{ e.preventDefault(); showToast('📢 Pendaftaran Musyawarah Kader via WA: 0852-8711-4403'); window.open('https://wa.me/6281234567890?text=Min,%20saya%20mendaftar%20Musyawarah%20Kader','_blank'); });
   document.querySelectorAll('.program-card').forEach(card=>{ card.addEventListener('click',()=>{ let prog=card.getAttribute('data-prog')||card.querySelector('h3')?.innerText; showToast(`✨ Info lebih lanjut mengenai ${prog} hubungi sekretariat DPC.`); }); });
   document.querySelectorAll('.berita-card').forEach(card=>{ card.addEventListener('click',()=>{ let judul=card.querySelector('h3')?.innerText; showToast(`📖 Baca selengkapnya: ${judul} (situs sedang dalam pengembangan)`); }); });
   document.querySelectorAll('.event-card').forEach(ev=>{ ev.addEventListener('click',()=>{ let judul=ev.querySelector('h3')?.innerText; showToast(`📅 ${judul} — Hubungi panitia untuk konfirmasi.`); }); });
